@@ -75,3 +75,21 @@ def simular_metricas_entrenamiento(cantidad_epochs):
     print("tiempo transcurrido:", tiempo_total)
 
     return lista_loss, lista_latencia
+    tiempo_total = fin - inicio
+
+def analizar_rendimiento(lista_loss):
+    print("analisis de entrenamoento")
+
+    # statistics.mean()
+    promedio_loss = statistics.mean(lista_loss)
+
+    # statistics.stdev()
+    desviacion = statistics.stdev(lista_loss)
+
+    # statistics.median()
+    mediana_latencia = statistics.median(lista_latencia)
+
+    print("promedio de loss:", round(promedio_loss, 3))
+    print("desviacion estandar:", round(desviacion, 3))
+    print("mediana de latencia:", round(mediana_latencia, 3))
+
