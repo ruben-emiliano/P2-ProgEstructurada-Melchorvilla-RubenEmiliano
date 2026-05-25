@@ -13,3 +13,14 @@ import random
 import statistics
 import sys
 
+#definicion de constantes 
+MAX_EPOCHS = 10
+UMBRAL_ERROR_CRITICO =0.95
+
+def obtener_info_sistema():
+    print("--informacion del sistema del usuario--")
+    print("plataforma" , sys.platform)
+    print("version de python", sys.version)
+    print("argumentos recibidos", sys.argv)
+    print("salida", sys.exit(1))
+    
