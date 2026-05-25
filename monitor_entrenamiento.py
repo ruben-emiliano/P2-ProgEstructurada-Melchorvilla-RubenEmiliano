@@ -143,3 +143,75 @@ def main():
 if __name__ == "__main__":
     print("=== INICIANDO SIMULADOR DE AGENTES DE IA ===")
     main()
+
+"""
+1. Uso de Objetos y Metodos
+
+En datetime.datetime.now(), el objeto o clase es datetime.datetime
+y el metodo es now().
+
+La biblioteca externa utilizada es datetime, la cual ya contiene
+funciones y clases programadas previamente en Python para trabajar
+con fechas y horas sin tener que programarlas desde cero.
+
+
+2. Diferenciacion Tecnica
+
+Cuando se importa un modulo completo como:
+
+import math
+
+es necesario escribir el nombre del modulo antes de la funcion:
+
+math.sqrt(25)
+
+Pero cuando se importa una funcion especifica:
+
+from math import sqrt
+
+solo se escribe:
+
+sqrt(25)
+
+La diferencia esta en la forma de invocar las funciones.
+
+
+3. Flujo y Logica
+
+Primero la funcion simular_metricas_entrenamiento() genera
+valores aleatorios de perdida y los guarda en listas.
+
+Despues las listas se envian a analizar_rendimiento()
+para calcular estadisticas.
+
+Finalmente se crean listas de predicciones y valores reales
+que se mandan a calcular_rmse() para calcular el error
+del entrenamiento.
+
+
+4. Mapeo de Tipos de Datos
+
+Los tipos de datos complejos utilizados fueron:
+
+- Listas:
+lista_loss y lista_latencia.
+
+Tambien se utilizo:
+- Lista de strings:
+eventos.
+
+Se eligieron listas porque permiten almacenar varios valores
+relacionados en una sola variable y recorrerlos facilmente,
+algo que no seria posible usando variables simples individuales.
+
+
+5. Autoevaluacion de Abstraccion
+
+No fue necesario programar manualmente la formula matematica
+de la desviacion estandar porque la biblioteca statistics
+ya incluye la funcion stdev().
+
+Esto se relaciona con el concepto de abstraccion porque
+la biblioteca oculta la complejidad interna del calculo
+y solo necesitamos utilizar la funcion ya creada.
+"""
