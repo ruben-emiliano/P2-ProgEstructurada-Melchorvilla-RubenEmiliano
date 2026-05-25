@@ -15,20 +15,22 @@ import sys
 
 #definicion de constantes 
 MAX_EPOCHS = 10
-UMBRAL_ERROR_CRITICO =0.95
+UMBRAL_ERROR_CRITICO = 0.95
 
 #obtenemos la informacion del dispositivo del usuario mediante la libreria sys
 def obtener_info_sistema():
     print("--informacion del sistema del usuario--")
-    print("plataforma" , sys.platform)
+    print("plataforma", sys.platform)
     print("version de python", sys.version)
     print("argumentos recibidos", sys.argv)
-    print("salida", sys.exit(1))
 
 def simular_metricas_entrenamiento(cantidad_epochs):
+
     inicio = datetime.datetime.now()
+
     print("inicio de simulacion:",
-      inicio.strftime("%d/%m/%Y %H:%M:%S"))
+          inicio.strftime("%d/%m/%Y %H:%M:%S"))
+
     lista_loss = []
     lista_latencia = []
 
@@ -70,15 +72,15 @@ def simular_metricas_entrenamiento(cantidad_epochs):
     print("fin de simulacion:",
           fin.strftime("%d/%m/%Y %H:%M:%S"))
 
-    tiempo_total = fin - datetime.datetime.now()
+    tiempo_total = fin - inicio
 
     print("tiempo transcurrido:", tiempo_total)
 
     return lista_loss, lista_latencia
-    tiempo_total = fin - inicio
 
-def analizar_rendimiento(lista_loss):
-    print("analisis de entrenamoento")
+def analizar_rendimiento(lista_loss, lista_latencia):
+
+    print("analisis de entrenamiento")
 
     # statistics.mean()
     promedio_loss = statistics.mean(lista_loss)
@@ -93,3 +95,51 @@ def analizar_rendimiento(lista_loss):
     print("desviacion estandar:", round(desviacion, 3))
     print("mediana de latencia:", round(mediana_latencia, 3))
 
+def calcular_rmse(predicciones, reales):
+
+    suma = 0
+    contador = 0
+
+    while contador < len(predicciones):
+
+        diferencia = predicciones[contador] - reales[contador]
+
+        # math.pow()
+        cuadrado = math.pow(diferencia, 2)
+
+        suma += cuadrado
+
+        contador += 1
+
+    promedio = suma / len(predicciones)
+
+    # math.sqrt()
+    rmse = math.sqrt(promedio)
+
+    # math.ceil()
+    rmse_final = math.ceil(rmse)
+
+    print("RMSE:", rmse_final)
+
+    return rmse_final
+
+def main():
+
+    obtener_info_sistema()
+
+    lista_loss, lista_latencia = simular_metricas_entrenamiento(MAX_EPOCHS)
+
+    analizar_rendimiento(lista_loss, lista_latencia)
+
+    predicciones = [0.9, 0.8, 0.7, 0.6]
+    reales = [1.0, 0.7, 0.8, 0.5]
+
+    calcular_rmse(predicciones, reales)
+
+    if statistics.mean(lista_loss) > UMBRAL_ERROR_CRITICO:
+        print("Error critico detectado")
+        sys.exit()
+
+if __name__ == "__main__":
+    print("=== INICIANDO SIMULADOR DE AGENTES DE IA ===")
+    main()
